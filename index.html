@@ -1,0 +1,987 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>熊本 6/13-6/16 四天三夜自駕行程</title>
+  <meta name="description" content="熊本、阿蘇、黑川溫泉、由布院 6/13-6/16 四天三夜自駕行程網站。">
+  <style>
+    :root {
+      --ink: #23312a;
+      --muted: #64766a;
+      --paper: #fbf6e8;
+      --mist: #e7f2ea;
+      --leaf: #5c8a62;
+      --moss: #2f5d50;
+      --sun: #f0bf5f;
+      --clay: #b96f4a;
+      --lake: #527f96;
+      --night: #21364a;
+      --line: rgba(35, 49, 42, 0.16);
+      --shadow: 0 24px 70px rgba(35, 49, 42, 0.18);
+      --radius: 8px;
+      --hero-image: url("https://files.catbox.moe/9pqu7p.jpg");
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 10% 4%, rgba(240, 191, 95, 0.24), transparent 32rem),
+        radial-gradient(circle at 90% 12%, rgba(82, 127, 150, 0.18), transparent 34rem),
+        linear-gradient(180deg, #f8efd9 0%, var(--paper) 26%, #edf5ec 100%);
+      letter-spacing: 0;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      pointer-events: none;
+      content: "";
+      background-image:
+        linear-gradient(rgba(47, 93, 80, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(47, 93, 80, 0.035) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      padding: 12px clamp(16px, 4vw, 56px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+      background: rgba(251, 246, 232, 0.86);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 10px 30px rgba(33, 54, 74, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      min-width: 0;
+      font-weight: 800;
+      color: var(--moss);
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border: 2px solid rgba(47, 93, 80, 0.44);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 52% 38%, var(--sun) 0 18%, transparent 19%),
+        radial-gradient(circle at 50% 78%, var(--leaf) 0 28%, transparent 29%),
+        linear-gradient(160deg, #d8ebd6, #f9e7b8);
+      box-shadow: inset 0 -6px 0 rgba(47, 93, 80, 0.08);
+      flex: 0 0 auto;
+    }
+
+    .day-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+
+    .day-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .day-nav a,
+    .link-button,
+    .map-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 1px solid rgba(47, 93, 80, 0.18);
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+      white-space: nowrap;
+    }
+
+    .day-nav a {
+      padding: 0 16px;
+      color: var(--moss);
+      background: rgba(255, 255, 255, 0.56);
+    }
+
+    .day-nav a:hover,
+    .day-nav a.is-active {
+      color: #fffaf0;
+      background: var(--moss);
+      box-shadow: 0 10px 24px rgba(47, 93, 80, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      min-height: 78vh;
+      display: grid;
+      align-items: end;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      padding: clamp(96px, 12vw, 140px) clamp(18px, 5vw, 72px) clamp(42px, 8vw, 82px);
+      background:
+        linear-gradient(180deg, rgba(18, 32, 32, 0.1), rgba(18, 32, 32, 0.5)),
+        linear-gradient(90deg, rgba(35, 49, 42, 0.8), rgba(35, 49, 42, 0.16) 68%),
+        var(--hero-image) center 35% / cover;
+    }
+
+    .hero::before,
+    .hero::after {
+      position: absolute;
+      z-index: -1;
+      content: "";
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 56vw;
+      height: 56vw;
+      right: -16vw;
+      top: -22vw;
+      border-radius: 50%;
+      background: rgba(240, 191, 95, 0.45);
+      filter: blur(20px);
+      opacity: 0.62;
+    }
+
+    .hero::after {
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 120px;
+      background:
+        linear-gradient(180deg, transparent, var(--paper)),
+        radial-gradient(110% 90% at 20% 100%, var(--paper) 0 38%, transparent 39%),
+        radial-gradient(100% 80% at 72% 100%, #e6f0df 0 36%, transparent 37%);
+    }
+
+    .leaf {
+      position: absolute;
+      z-index: 1;
+      width: 10px;
+      height: 22px;
+      border-radius: 10px 0 10px 0;
+      background: rgba(221, 180, 79, 0.8);
+      transform: rotate(24deg);
+      animation: floatLeaf 12s linear infinite;
+    }
+
+    .leaf:nth-child(1) { left: 16%; top: 18%; animation-delay: -2s; }
+    .leaf:nth-child(2) { left: 62%; top: 12%; animation-delay: -7s; background: rgba(105, 143, 91, 0.78); }
+    .leaf:nth-child(3) { left: 84%; top: 32%; animation-delay: -4s; background: rgba(185, 111, 74, 0.75); }
+
+    @keyframes floatLeaf {
+      0% { transform: translate3d(0, -20px, 0) rotate(0deg); opacity: 0; }
+      15% { opacity: 1; }
+      55% { transform: translate3d(-22px, 120px, 0) rotate(170deg); }
+      100% { transform: translate3d(34px, 260px, 0) rotate(340deg); opacity: 0; }
+    }
+
+    .hero-content {
+      width: min(780px, 100%);
+      color: #fffaf0;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.22);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #fbf6e8;
+    }
+
+    .eyebrow::before {
+      width: 38px;
+      height: 2px;
+      content: "";
+      border-radius: 999px;
+      background: var(--sun);
+    }
+
+    h1 {
+      max-width: 740px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", "Noto Serif TC", serif;
+      font-size: clamp(2.7rem, 8vw, 6.8rem);
+      line-height: 0.94;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 650px;
+      margin: 22px 0 0;
+      font-size: clamp(1.02rem, 2vw, 1.28rem);
+      line-height: 1.8;
+      color: rgba(255, 250, 240, 0.9);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 14px;
+      border: 1px solid rgba(255, 255, 255, 0.36);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(8px);
+      font-weight: 800;
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    .route-band {
+      padding: 56px clamp(18px, 5vw, 72px) 30px;
+    }
+
+    .route-inner {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+      gap: clamp(26px, 5vw, 64px);
+      align-items: center;
+    }
+
+    .section-kicker {
+      margin: 0 0 10px;
+      color: var(--clay);
+      font-weight: 900;
+    }
+
+    h2,
+    h3 {
+      margin: 0;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", "Noto Serif TC", serif;
+      letter-spacing: 0;
+    }
+
+    .route-inner h2 {
+      font-size: clamp(2rem, 4.6vw, 4.2rem);
+      line-height: 1.04;
+    }
+
+    .route-inner p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 1.05rem;
+    }
+
+    .route-map {
+      position: relative;
+      min-height: 390px;
+      padding: 26px;
+      border: 1px solid rgba(47, 93, 80, 0.13);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.68), rgba(232, 244, 229, 0.62)),
+        repeating-linear-gradient(-8deg, rgba(47, 93, 80, 0.06) 0 1px, transparent 1px 14px);
+      box-shadow: var(--shadow);
+    }
+
+    .route-line {
+      position: absolute;
+      inset: 62px 48px;
+      border: 3px dashed rgba(92, 138, 98, 0.48);
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-radius: 58% 42% 45% 55%;
+      transform: rotate(-8deg);
+    }
+
+    .map-point {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 82px;
+      height: 82px;
+      padding: 8px;
+      border: 2px solid rgba(47, 93, 80, 0.18);
+      border-radius: 50%;
+      color: #fffaf0;
+      background: var(--moss);
+      box-shadow: 0 16px 32px rgba(47, 93, 80, 0.18);
+      text-align: center;
+      font-size: 0.86rem;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .map-point:nth-of-type(2) { left: 10%; top: 12%; background: var(--night); }
+    .map-point:nth-of-type(3) { right: 14%; top: 18%; background: var(--clay); }
+    .map-point:nth-of-type(4) { left: 34%; top: 50%; background: var(--leaf); }
+    .map-point:nth-of-type(5) { right: 10%; bottom: 12%; background: var(--lake); }
+    .map-point:nth-of-type(6) { left: 10%; bottom: 10%; background: var(--sun); color: var(--ink); }
+
+    .days {
+      display: grid;
+      gap: 0;
+    }
+
+    .day-section {
+      scroll-margin-top: 86px;
+      padding: clamp(54px, 8vw, 92px) clamp(18px, 5vw, 72px);
+      position: relative;
+    }
+
+    .day-section:nth-child(odd) {
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .day-layout {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(300px, 0.84fr) minmax(0, 1.16fr);
+      gap: clamp(24px, 5vw, 60px);
+      align-items: start;
+    }
+
+    .day-visual {
+      position: sticky;
+      top: 92px;
+      min-height: 520px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid rgba(47, 93, 80, 0.14);
+      background:
+        linear-gradient(180deg, rgba(33, 54, 74, 0), rgba(33, 54, 74, 0.52)),
+        var(--day-image) center / cover,
+        linear-gradient(135deg, #c9dfc6, #f5dca1);
+      box-shadow: var(--shadow);
+    }
+
+    .day-visual::after {
+      position: absolute;
+      inset: auto 0 0;
+      padding: 28px;
+      color: #fffaf0;
+      content: attr(data-caption);
+      font-size: 1.1rem;
+      font-weight: 900;
+      line-height: 1.5;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.34);
+      background: linear-gradient(180deg, transparent, rgba(23, 35, 34, 0.68));
+    }
+
+    .day-content {
+      min-width: 0;
+    }
+
+    .day-label {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      margin-bottom: 14px;
+      padding: 0 12px;
+      border-radius: 999px;
+      color: #fffaf0;
+      background: var(--moss);
+      font-weight: 900;
+    }
+
+    .day-content h2 {
+      font-size: clamp(2.1rem, 4.8vw, 4.6rem);
+      line-height: 1.02;
+    }
+
+    .day-summary {
+      margin: 18px 0 26px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.9;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+      margin: 26px 0 34px;
+    }
+
+    .time-row {
+      display: grid;
+      grid-template-columns: 86px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .time-row:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .time {
+      color: var(--clay);
+      font-weight: 900;
+    }
+
+    .time-row h3 {
+      font-size: 1.22rem;
+      line-height: 1.35;
+    }
+
+    .time-row p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .info-panel {
+      min-width: 0;
+      padding: 22px;
+      border: 1px solid rgba(47, 93, 80, 0.14);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: 0 16px 36px rgba(35, 49, 42, 0.08);
+    }
+
+    .info-panel h3 {
+      margin-bottom: 14px;
+      font-size: 1.16rem;
+      color: var(--moss);
+    }
+
+    .button-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .link-button,
+    .map-button {
+      gap: 8px;
+      min-height: 40px;
+      padding: 0 14px;
+      font-size: 0.92rem;
+    }
+
+    .link-button {
+      color: #fffaf0;
+      background: var(--moss);
+    }
+
+    .map-button {
+      color: var(--night);
+      background: #fffaf0;
+    }
+
+    .link-button::after,
+    .map-button::after {
+      content: "↗";
+      font-size: 0.94rem;
+      line-height: 1;
+    }
+
+    .link-button:hover,
+    .map-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(47, 93, 80, 0.16);
+    }
+
+    .note {
+      margin-top: 24px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--sun);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      color: var(--night);
+      background: rgba(240, 191, 95, 0.18);
+      line-height: 1.75;
+      font-weight: 700;
+    }
+
+    .source-footer {
+      padding: 34px clamp(18px, 5vw, 72px) 44px;
+      color: rgba(255, 250, 240, 0.82);
+      background: var(--night);
+    }
+
+    .source-footer .footer-inner {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      display: grid;
+      gap: 14px;
+    }
+
+    .source-footer p {
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .source-footer a {
+      color: #fff2bd;
+      font-weight: 800;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 620ms ease, transform 620ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 920px) {
+      .site-header,
+      .route-inner,
+      .day-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .site-header {
+        gap: 10px;
+      }
+
+      .day-nav {
+        width: 100%;
+      }
+
+      .hero {
+        min-height: 72vh;
+        background-position: 58% center;
+      }
+
+      .route-map {
+        min-height: 340px;
+      }
+
+      .day-visual {
+        position: relative;
+        top: auto;
+        min-height: 340px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .brand {
+        font-size: 0.95rem;
+      }
+
+      .day-nav a {
+        min-height: 38px;
+        padding: 0 12px;
+        font-size: 0.92rem;
+      }
+
+      .hero {
+        padding-top: 86px;
+      }
+
+      .hero-copy {
+        font-size: 1rem;
+      }
+
+      .route-map {
+        min-height: 300px;
+        padding: 18px;
+      }
+
+      .route-line {
+        inset: 58px 38px;
+      }
+
+      .map-point {
+        width: 72px;
+        height: 72px;
+        font-size: 0.78rem;
+      }
+
+      .time-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .info-panel {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="回到頁首">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>熊本森旅手帖</span>
+    </a>
+    <nav class="day-nav" aria-label="行程日期導覽">
+      <a href="#day1">第一天</a>
+      <a href="#day2">第二天</a>
+      <a href="#day3">第三天</a>
+      <a href="#day4">第四天</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="熊本四天三夜行程封面">
+      <span class="leaf" aria-hidden="true"></span>
+      <span class="leaf" aria-hidden="true"></span>
+      <span class="leaf" aria-hidden="true"></span>
+      <div class="hero-content reveal">
+        <p class="eyebrow">6/13-6/16 自駕慢旅</p>
+        <h1>熊本、阿蘇與溫泉森林</h1>
+        <p class="hero-copy">從熊本城的石垣走進阿蘇草原，繞過高千穗峽與黑川溫泉，最後在由布院的湖霧裡慢下來。這是一條不太走回頭路、把最硬的車程放在第二天的四天三夜路線。</p>
+        <div class="hero-meta" aria-label="行程摘要">
+          <span>熊本市區</span>
+          <span>高千穗峽</span>
+          <span>阿蘇草千里</span>
+          <span>黑川溫泉</span>
+          <span>由布院</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="route-band">
+      <div class="route-inner reveal">
+        <div>
+          <p class="section-kicker">順時針路線</p>
+          <h2>先冒險，後泡湯，最後把山景收進回程。</h2>
+          <p>路線以熊本為起點，第二天衝高千穗與阿蘇，第三天改成舒服的溫泉鎮散步，第四天經阿蘇外輪山回熊本機場。每天都留一個可刪的景點，遇到雨霧或山路塞車時比較好調整。</p>
+        </div>
+        <div class="route-map" aria-label="行程路線示意圖">
+          <span class="route-line" aria-hidden="true"></span>
+          <span class="map-point">熊本市</span>
+          <span class="map-point">高千穗</span>
+          <span class="map-point">阿蘇</span>
+          <span class="map-point">由布院</span>
+          <span class="map-point">熊本機場</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="days">
+      <section class="day-section" id="day1">
+        <div class="day-layout">
+          <div class="day-visual reveal" data-caption="Day 1 - 熊本城、城彩苑、上通下通商店街" style="--day-image: url('https://files.catbox.moe/9pqu7p.jpg');"></div>
+          <div class="day-content reveal">
+            <span class="day-label">第一天 - 6/13</span>
+            <h2>熊本市區慢遊</h2>
+            <p class="day-summary">抵達後先進市區，讓第一天保持輕鬆。熊本城和城彩苑排在一起，傍晚走上通、下通商店街補貨與吃晚餐。</p>
+
+            <div class="timeline" aria-label="第一天行程">
+              <div class="time-row">
+                <div class="time">下午</div>
+                <div>
+                  <h3>熊本城</h3>
+                  <p>先看天守閣、石垣與城內展望。若天氣熱，午后節奏放慢，留時間拍照與休息。</p>
+                </div>
+              </div>
+              <div class="time-row">
+                <div class="time">下午茶</div>
+                <div>
+                  <h3>櫻之馬場 城彩苑</h3>
+                  <p>吃馬肉料理、赤牛丼、熊本拉麵或小點心，順便買伴手禮。</p>
+                </div>
+              </div>
+              <div class="time-row">
+                <div class="time">傍晚</div>
+                <div>
+                  <h3>上通、下通商店街</h3>
+                  <p>安排唐吉訶德、Loft、藥妝與熊本熊周邊。水前寺成趣園可作為時間充裕時的加碼點。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-grid">
+              <div class="info-panel">
+                <h3>住宿推薦</h3>
+                <div class="button-list">
+                  <a class="link-button" href="https://dormy-hotels.com/dormyinn/hotels/nono_kumamoto/" target="_blank" rel="noopener noreferrer">御宿 野乃熊本</a>
+                  <a class="link-button" href="https://dormy-hotels.com/dormyinn/hotels/kumamoto/" target="_blank" rel="noopener noreferrer">Dormy Inn 熊本</a>
+                </div>
+              </div>
+              <div class="info-panel">
+                <h3>美食地圖</h3>
+                <div class="button-list">
+                  <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=%E5%8B%9D%E7%83%88%E4%BA%AD%20%E6%96%B0%E5%B8%82%E8%A1%97%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener noreferrer">勝烈亭</a>
+                  <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=%E6%A1%82%E8%8A%B1%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3%20%E6%9C%AC%E5%BA%97%20%E7%86%8A%E6%9C%AC" target="_blank" rel="noopener noreferrer">桂花拉麵</a>
+                  <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=%E8%8F%85%E4%B9%83%E5%B1%8B%20%E9%8A%80%E5%BA%A7%E9%80%9A%E3%82%8A%E5%BA%97%20%E7%86%8A%E6%9C%AC" target="_blank" rel="noopener noreferrer">菅乃屋</a>
+                </div>
+              </div>
+            </div>
+            <p class="note">第一晚住市區最省力，隔天一早開車出發比較不會被熊本市內交通拖住。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="day-section" id="day2">
+        <div class="day-layout">
+          <div class="day-visual reveal" data-caption="Day 2 - 高千穗峽、天岩戶神社、阿蘇草千里、黑川溫泉" style="--day-image: url('https://files.catbox.moe/9afy0l.jpg');"></div>
+          <div class="day-content reveal">
+            <span class="day-label">第二天 - 6/14</span>
+            <h2>高千穗與阿蘇火山草原</h2>
+            <p class="day-summary">這天最美，也最吃車程。建議 7:30 前離開熊本，將高千穗峽放在上午，午後一路回到阿蘇草千里，晚上進黑川溫泉。</p>
+
+            <div class="timeline" aria-label="第二天行程">
+              <div class="time-row">
+                <div class="time">07:30</div>
+                <div>
+                  <h3>熊本市出發</h3>
+                  <p>山路多，早餐與水先備好。高千穗划船若沒有預約成功，就改走峽谷步道。</p>
+                </div>
+              </div>
+              <div class="time-row">
+                <div class="time">10:15</div>
+                <div>
+                  <h3>高千穗峽</h3>
+                  <p>看真名井瀑布、峽谷步道與橋上視角。划船要提早預約，現場排隊時間不可控。</p>
+                </div>
+              </div>
+              <div class="time-row">
+                <div class="time">12:30</div>
+                <div>
+                  <h3>天岩戶神社、天安河原</h3>
+                  <p>神話感很濃的一段，石堆河原與林道很有靜謐氣氛。</p>
+                </div>
+              </div>
+              <div class="time-row">
+                <div class="time">15:30</div>
+                <div>
+                  <h3>阿蘇草千里、火山博物館</h3>
+                  <p>草原、馬群與火山煙霧是阿蘇代表畫面。火口是否能近距離參觀，以當天官方規制為準。</p>
+                </div>
+              </div>
+              <div class="time-row">
+                <div class="time">18:00</div>
+                <div>
+                  <h3>黑川溫泉入住</h3>
+                  <p>抵達後不要再排行程，留給旅館晚餐、露天風呂與溫泉街夜散步。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-grid">
+              <div class="info-panel">
+                <h3>住宿推薦</h3>
+                <div class="button-list">
+                  <a class="link-button" href="https://noshiyu.jp/" target="_blank" rel="noopener noreferrer">お宿 のし湯</a>
+                  <a class="link-button" href="http://www.yamamizuki.com/" target="_blank" rel="noopener noreferrer">山みず木</a>
+                  <a class="link-button" href="https://www.sanga-ryokan.com/" target="_blank" rel="noopener noreferrer">山河旅館</a>
+                </div>
+              </div>
+              <div class="info-panel">
+                <h3>美食地圖</h3>
+                <div class="button-list">
+                  <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=%E9%AB%98%E5%8D%83%E7%A9%82%E7%89%9B%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3%E5%92%8C" target="_blank" rel="noopener noreferrer">高千穗牛 和</a>
+                  <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=%E3%81%82%E3%81%8B%E7%89%9B%E4%B8%BC%20%E3%81%84%E3%82%8F%E3%81%95%E3%81%8D%20%E9%98%BF%E8%98%87" target="_blank" rel="noopener noreferrer">あか牛丼 いわさき</a>
+                  <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=%E8%8D%89%E5%8D%83%E9%87%8C%E3%83%AC%E3%82%B9%E3%83%88%E3%83%8F%E3%82%A6%E3%82%B9" target="_blank" rel="noopener noreferrer">草千里餐廳</a>
+                </div>
+              </div>
+            </div>
+            <p class="note">如果阿蘇起霧或火口關閉，草千里和博物館仍值得停；這天不要為了補景點壓縮黑川旅館晚餐時間。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="day-section" id="day3">
+        <div class="day-layout">
+          <div class="day-visual reveal" data-caption="Day 3 - 黑川溫泉、九重夢大吊橋、由布院、金鱗湖" style="--day-image: url('https://files.catbox.moe/w0g4ew.jpg');"></div>
+          <div class="day-content reveal">
+            <span class="day-label">第三天 - 6/15</span>
+            <h2>黑川到由布院的溫泉慢日</h2>
+            <p class="day-summary">第三天把速度放慢。早上在黑川喝咖啡、散步或泡湯，天氣好再去九重夢大吊橋，下午進由布院逛湯之坪街道與金鱗湖。</p>
+
+            <div class="timeline" aria-label="第三天行程">
+              <div class="time-row">
+                <div class="time">09:30</div>
+                <div>
+                  <h3>黑川溫泉街</h3>
+                  <p>早餐後散步，若有入湯手形可再泡一間露天風呂。</p>
+                </div>
+              </div>
+              <div class="time-row">
+                <div class="time">11:30</div>
+                <div>
+                  <h3>九重夢大吊橋</h3>
+                  <p>天氣晴朗時很值得。若強風、濃霧或有人怕高，直接跳過也不影響主線。</p>
+                </div>
+              </div>
+              <div class="time-row">
+                <div class="time">14:00</div>
+                <div>
+                  <h3>由布院 Floral Village、湯之坪街道</h3>
+                  <p>小店密集，甜點、雜貨、伴手禮一路慢慢走。</p>
+                </div>
+              </div>
+              <div class="time-row">
+                <div class="time">16:30</div>
+                <div>
+                  <h3>金鱗湖</h3>
+                  <p>傍晚湖邊光線柔和，適合拍照，也能把這天自然收尾到旅館晚餐。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-grid">
+              <div class="info-panel">
+                <h3>住宿推薦</h3>
+                <div class="button-list">
+                  <a class="link-button" href="https://www.oyado-ichizen.com/" target="_blank" rel="noopener noreferrer">御宿 一禅</a>
+                  <a class="link-button" href="https://www.hinoharu.jp/" target="_blank" rel="noopener noreferrer">日の春旅館</a>
+                  <a class="link-button" href="https://www.iyotomi.jp/" target="_blank" rel="noopener noreferrer">由布院 いよとみ</a>
+                </div>
+              </div>
+              <div class="info-panel">
+                <h3>美食地圖</h3>
+                <div class="button-list">
+                  <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=B-speak%20%E7%94%B1%E5%B8%83%E9%99%A2" target="_blank" rel="noopener noreferrer">B-speak</a>
+                  <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=%E7%94%B1%E5%B8%83%E3%81%BE%E3%81%B6%E3%81%97%20%E5%BF%83%20%E9%87%91%E9%B1%97%E6%B9%96%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener noreferrer">由布まぶし 心</a>
+                  <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=Yufuin%20Milch" target="_blank" rel="noopener noreferrer">Milch</a>
+                </div>
+              </div>
+            </div>
+            <p class="note">由布院核心區不大，行李放旅館後步行最舒服；開車進商店街周邊反而容易被停車拖住。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="day-section" id="day4">
+        <div class="day-layout">
+          <div class="day-visual reveal" data-caption="Day 4 - 由布院、やまなみハイウェイ、大觀峰、熊本機場" style="--day-image: url('https://files.catbox.moe/pdmizj.jpg');"></div>
+          <div class="day-content reveal">
+            <span class="day-label">第四天 - 6/16</span>
+            <h2>山路回熊本機場</h2>
+            <p class="day-summary">回程抓保守一點。若班機時間早，直接由布院到熊本機場；若時間充裕，經やまなみハイウェイ和大觀峰短停，收最後一段阿蘇外輪山景。</p>
+
+            <div class="timeline" aria-label="第四天行程">
+              <div class="time-row">
+                <div class="time">上午</div>
+                <div>
+                  <h3>由布院早餐、退房</h3>
+                  <p>出發前確認油量、還車時間與航班時間。山區天氣變化快，不建議壓線。</p>
+                </div>
+              </div>
+              <div class="time-row">
+                <div class="time">途中</div>
+                <div>
+                  <h3>やまなみハイウェイ、大觀峰</h3>
+                  <p>天氣好就短停拍照；若起霧、下雨或班機偏早，直接略過。</p>
+                </div>
+              </div>
+              <div class="time-row">
+                <div class="time">返程</div>
+                <div>
+                  <h3>熊本機場還車</h3>
+                  <p>建議至少提前 3.5-4 小時離開由布院，保留加油、還車接駁與安檢緩衝。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-grid">
+              <div class="info-panel">
+                <h3>若加住一晚</h3>
+                <div class="button-list">
+                  <a class="link-button" href="https://dormy-hotels.com/dormyinn/hotels/nono_kumamoto/" target="_blank" rel="noopener noreferrer">御宿 野乃熊本</a>
+                  <a class="link-button" href="https://dormy-hotels.com/dormyinn/hotels/kumamoto/" target="_blank" rel="noopener noreferrer">Dormy Inn 熊本</a>
+                </div>
+              </div>
+              <div class="info-panel">
+                <h3>美食地圖</h3>
+                <div class="button-list">
+                  <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E3%81%AE%E9%A7%85%20%E9%98%BF%E8%98%87" target="_blank" rel="noopener noreferrer">道之驛 阿蘇</a>
+                  <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=%E3%81%84%E3%81%BE%E3%81%8D%E3%82%93%E9%A3%9F%E5%A0%82%20%E9%98%BF%E8%98%87" target="_blank" rel="noopener noreferrer">いまきん食堂</a>
+                  <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=%E7%86%8A%E6%9C%AC%E7%A9%BA%E6%B8%AF%20%E9%A3%9F%E4%BA%8B" target="_blank" rel="noopener noreferrer">熊本機場餐廳</a>
+                </div>
+              </div>
+            </div>
+            <p class="note">最後一天的景點只當順路加分，主目標是平安還車與準時到機場。</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="source-footer">
+    <div class="footer-inner">
+      <p>照片來源使用 Wikimedia Commons 公開圖像，住宿按鈕連至各設施官方網站，餐廳按鈕連至 Google Maps 搜尋標記。</p>
+      <p>
+        圖像參考：
+        <a href="https://commons.wikimedia.org/wiki/File:Kumamoto_Castle_02n3200.jpg" target="_blank" rel="noopener noreferrer">熊本城</a>、
+        <a href="https://commons.wikimedia.org/wiki/Category:Kusasenrigahama" target="_blank" rel="noopener noreferrer">阿蘇草千里</a>、
+        <a href="https://commons.wikimedia.org/wiki/Category:Lake_Kinrin" target="_blank" rel="noopener noreferrer">金鱗湖</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const sections = Array.from(document.querySelectorAll(".day-section"));
+    const navLinks = Array.from(document.querySelectorAll(".day-nav a"));
+    const reveals = Array.from(document.querySelectorAll(".reveal"));
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    reveals.forEach((element) => revealObserver.observe(element));
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach((link) => {
+          link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`);
+        });
+      });
+    }, { rootMargin: "-35% 0px -55% 0px", threshold: 0.01 });
+
+    sections.forEach((section) => navObserver.observe(section));
+  </script>
+</body>
+</html>
