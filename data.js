@@ -1,6 +1,17 @@
 window.SITE_DATA = {
   news: [
     {
+      title: "Resilient Energy-Based Control for DC Data Centers under Grid and Load Disturbances",
+      date: "2026-05-20",
+      region: "United States",
+      sector: "Data Center & Converter Control",
+      source: "arXiv",
+      sourceUrl: "https://arxiv.org/html/2605.21691v1",
+      priority: true,
+      tags: ["DC data center", "passivity-based control", "Port-Hamiltonian", "constant-power load", "AC/DC converter"],
+      summary: "Wang, Feng, Chou and Lin present a Port-Hamiltonian passivity-based control framework for AC/DC converters supplying non-passive IT rack loads in DC data centers under grid and load disturbances."
+    },
+    {
       title: "Delta debuts prefabricated AI modular data center solution at COMPUTEX 2026",
       date: "2026-06-02",
       region: "Taiwan",
@@ -46,6 +57,46 @@ window.SITE_DATA = {
     }
   ],
   articles: [
+    {
+      articleNo: 5,
+      title: "Passivity-Based Control for DC Data Centres: Enhancing Converter Stability under Grid and Load Disturbances",
+      date: "2026-06-11",
+      topic: "Data Center Power Integration",
+      readTime: "9 min",
+      imageTone: "control",
+      sourceTitle: "Wang, Feng, Chou and Lin, arXiv:2605.21691",
+      sourceUrl: "https://arxiv.org/html/2605.21691v1",
+      tags: ["DC data centres", "passivity-based control", "Port-Hamiltonian", "constant-power loads", "converter stability"],
+      slug: "passivity-based-control-dc-data-centres",
+      excerpt: "A technical review of how Port-Hamiltonian passivity-based control can improve DC bus stability and ride-through for converter-fed DC data centres with non-passive constant-power IT loads.",
+      sections: [
+        { heading: "Executive Summary", paragraphs: [
+          "The transition towards high-density AI data centres is increasing interest in DC power architectures. However, these systems introduce new converter-level stability challenges. Aggregated IT rack loads may behave as constant-power loads, creating negative incremental resistance at the DC bus and reducing damping during grid or load disturbances.",
+          "This technical note reviews a Port-Hamiltonian passivity-based control approach for grid-tied AC/DC converters supplying DC data centres. The method uses energy shaping and damping injection to regulate the DC bus and render the converter-load interface passive, even when the connected IT loads exhibit non-passive behaviour.",
+          "For power systems and data-centre engineers, the key implication is that large data-centre connections should be assessed not only for steady-state capacity, but also for converter control robustness, DC bus ride-through capability and validated dynamic performance. This is particularly important where large converter-interfaced loads are connected to constrained, low-inertia or disturbance-sensitive networks."
+        ]},
+        { heading: "Technical Framing", points: [
+          { label: "DC data centre power architecture", text: "A simplified DC data-centre power architecture can be represented as: AC grid -> grid impedance -> AC/DC converter and filter -> DC bus -> IT rack loads, DC/DC converters and cooling loads. In this architecture, the front-end AC/DC converter is the key interface between the external power system and the internal DC distribution network. Its control response determines how the DC bus behaves during voltage sags, load steps and other disturbances." },
+          { label: "Non-passive constant-power load behaviour", text: "Constant-power loads introduce negative incremental resistance into the DC bus. When the DC bus voltage decreases, the load current increases in order to maintain constant power. This behaviour reduces damping, weakens voltage recovery and may destabilise the converter-load interaction during load steps or grid disturbances. Dynamic IT rack demand should therefore be treated as a converter-stability input, not merely as an energy-forecasting variable." },
+          { label: "Limitations of conventional PI control", text: "Conventional cascaded PI control may provide acceptable small-signal performance near the rated operating point. However, it does not explicitly enforce energy dissipation under large grid or load disturbances such as voltage sags, frequency deviations, converter current limits, sudden IT load changes or operation away from the nominal design point." },
+          { label: "Port-Hamiltonian and passivity-based control", text: "A Port-Hamiltonian formulation provides an energy-based framework for modelling the grid, converter and DC-link subsystems. Energy shaping defines where the system should settle by shaping stored energy so that the desired DC bus voltage becomes the stable equilibrium point. Damping injection defines how the system should stop oscillating on the way to that equilibrium point by adding virtual damping that dissipates excess energy." },
+          { label: "Engineering proposal", text: "The proposed engineering concept can be summarised as: grid-tied AC/DC converter + constant-power data-centre load + Port-Hamiltonian passivity-rendering control. This approach aims to improve DC bus voltage ride-through, enhance disturbance robustness and reduce the risk of converter-load instability during grid or IT load disturbances." }
+        ]},
+        { heading: "Recommendations", paragraphs: [
+          "Large DC data-centre connection studies should go beyond steady-state demand assessment. Validated dynamic models should be required for large DC data-centre front-end converters, and constant-power load behaviour should be included in connection studies.",
+          "DC bus ride-through should be tested under voltage sag and load step events. Passivity-based or energy-based control should be benchmarked against conventional PI controllers, and data-centre internal resilience should be coordinated with wider grid stability requirements.",
+          "The front-end AC/DC converters require validated dynamic models because their control response determines how the DC bus behaves during voltage sags and load steps. Ride-through tests should assess DC voltage deviation, recovery time, converter current limits and the absence of sustained oscillations.",
+          "Finally, data-centre internal resilience must be coordinated with wider grid stability requirements, so that protection, backup transfer and reconnection schemes do not create large correlated disturbances for the power system."
+        ]},
+        { heading: "Economics and Planning Implications", paragraphs: [
+          "Passivity-based control should be considered as a risk-reduction technology. Although it may increase design, validation and commissioning effort, it can reduce the expected cost of DC bus instability, ride-through failure, unplanned load shedding and operational disruption.",
+          "The economic value of this approach lies in reducing the probability and impact of disturbance-related failures. For large AI data centres, even short-duration instability events may have significant operational and commercial consequences.",
+          "DC architectures may reduce conversion losses by simplifying the power conversion chain. However, their economic case depends on whether efficiency gains and resilience benefits outweigh the additional costs associated with advanced control, DC protection, model validation and specialist maintenance.",
+          "From a planning perspective, data-centre electrical design should include a converter-level stability plan covering DC bus regulation, constant-power load behaviour, voltage sag response, controller robustness and reconnection strategy. For network operators, large data-centre connections should therefore be assessed as dynamic converter-interfaced loads, rather than simple steady-state MW demand."
+        ]}
+      ],
+      cengAngle: "Use this case to discuss converter control robustness, passivity, constant-power-load dynamics, validated dynamic modelling, DC bus ride-through, and how data-centre internal resilience should coordinate with wider grid stability requirements."
+    },
     {
       articleNo: 4,
       title: "Engineering Assessment of Delta's Prefabricated AI Modular Data Centre Solution at COMPUTEX 2026",
