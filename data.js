@@ -1,6 +1,23 @@
 window.SITE_DATA = {
   news: [
     {
+          "title": "Learning-Assisted Day-Ahead Energy Scheduling for Frequency-Secure Inverter-Dominated Grids with Grid-Forming Battery Energy Storage Systems",
+          "date": "2026-06-04",
+          "region": "Global Research",
+          "sector": "Grid-Forming BESS & Frequency Security",
+          "source": "arXiv",
+          "sourceUrl": "https://arxiv.org/abs/2606.05534",
+          "priority": true,
+          "tags": [
+                "grid-forming BESS",
+                "frequency security",
+                "day-ahead scheduling",
+                "EMT simulation",
+                "surrogate model"
+          ],
+          "summary": "Fan Jiang and Xingpeng Li propose a learning-assisted day-ahead scheduling framework that uses EMT simulation data and a surrogate model to schedule grid-forming BESS while respecting RoCoF, frequency nadir and transient reserve requirements."
+    },
+    {
       title: "Resilient Energy-Based Control for DC Data Centers under Grid and Load Disturbances",
       date: "2026-05-20",
       region: "United States",
@@ -57,6 +74,115 @@ window.SITE_DATA = {
     }
   ],
   articles: [
+    {
+          "articleNo": 6,
+          "title": "Learning-Assisted Scheduling of Grid-Forming BESS for Frequency-Secure Inverter-Dominated Grids",
+          "date": "2026-06-17",
+          "topic": "Grid-Forming BESS & Frequency Security",
+          "readTime": "11 min",
+          "imageTone": "storage",
+          "sourceTitle": "Fan Jiang and Xingpeng Li, arXiv:2606.05534",
+          "sourceUrl": "https://arxiv.org/abs/2606.05534",
+          "tags": [
+                "grid-forming BESS",
+                "frequency security",
+                "day-ahead scheduling",
+                "EMT simulation",
+                "surrogate model",
+                "RoCoF"
+          ],
+          "slug": "learning-assisted-scheduling-grid-forming-bess-frequency-secure-grids",
+          "excerpt": "A review of how EMT-trained surrogate models can help schedule grid-forming BESS for both economic operation and frequency security in inverter-dominated power systems.",
+          "sections": [
+                {
+                      "heading": "Executive Summary",
+                      "paragraphs": [
+                            "Traditional power systems are supported by many synchronous generators. These machines provide physical inertia, which helps stabilise system frequency when the grid experiences a generation loss or load fluctuation. As wind generation, photovoltaic generation and battery energy storage systems become increasingly connected through power electronic inverters, synchronous generation declines and system inertia falls.",
+                            "Lower inertia may increase the rate of change of frequency, RoCoF, and reduce the time available for corrective control after a contingency such as the tripping of a large generator. Conventional grid-following inverters rely on an existing voltage waveform and a sufficiently strong grid, while grid-forming inverters can establish voltage magnitude and phase angle, enabling synthetic inertia, fast frequency response and improved low-inertia operation.",
+                            "This paper proposes a learning-assisted day-ahead energy scheduling framework for inverter-dominated grids with grid-forming BESS. EMT simulation data are used to train a surrogate model that captures the frequency-support dynamics of grid-forming BESS. The surrogate model is then embedded into day-ahead scheduling so that BESS operation can be optimised while respecting frequency-security constraints.",
+                            "For future UK and international networks, the key lesson is that offshore wind, BESS and other inverter-based resources should not be planned only as steady-state MW or MWh assets. Their dynamic contribution to frequency security must also be modelled, scheduled and valued."
+                      ]
+                },
+                {
+                      "heading": "Technical Framing",
+                      "paragraphs": [
+                            "Accurately integrating grid-forming BESS into day-ahead energy scheduling is difficult because frequency-security metrics such as RoCoF and frequency nadir are governed by fast transient dynamics. These dynamics are best captured by electromagnetic transient, EMT, simulation, but EMT simulation is too computationally expensive to embed directly in large operational scheduling models.",
+                            "The proposed Learning-Assisted Day-Ahead Energy Scheduling, LA-DAES, method first uses EMT simulation to generate high-fidelity frequency-response data. A surrogate model is then trained to predict frequency-security metrics and transient reserve requirements for grid-forming BESS. Finally, this surrogate model is embedded into the day-ahead scheduling problem, allowing the system operator to schedule GFM BESS while maintaining frequency security.",
+                            "Compared with conventional analytical frequency-constrained DAES, this approach can represent grid frequency metrics more accurately and improve the utilisation of GFM BESS."
+                      ],
+                      "points": [
+                            {
+                                  "label": "BESS state of charge",
+                                  "text": "The state of charge, SOC, of a BESS is critical for frequency support. If SOC is too low, the BESS may not have sufficient energy to support the grid after a contingency. If SOC is too high, the BESS may have limited ability to absorb excess power. Grid-forming BESS should therefore be scheduled not only for energy arbitrage, but also to preserve sufficient SOC and power headroom for fast frequency support."
+                            },
+                            {
+                                  "label": "Surrogate model",
+                                  "text": "A learning-assisted surrogate model bridges EMT-level dynamic accuracy and the computational tractability required for day-ahead scheduling. Conventional scheduling mainly minimises generation cost while satisfying load balance, generator constraints, network constraints and BESS SOC limits. In inverter-dominated grids, the lowest-cost schedule may not be frequency-secure, so frequency-security constraints should be embedded directly into day-ahead scheduling."
+                            },
+                            {
+                                  "label": "Methodology",
+                                  "text": "The workflow is: build a traditional DAES benchmark; use EMT simulation to produce RoCoF, frequency nadir and GFM BESS support requirements; train a ReLU neural-network surrogate model; then embed the surrogate model into DAES so that GFM BESS can be scheduled while respecting both economic and frequency-security constraints."
+                            }
+                      ]
+                },
+                {
+                      "heading": "Recommendations",
+                      "points": [
+                            {
+                                  "label": "Extend validation to larger systems",
+                                  "text": "The proposed framework should be validated on larger and more realistic transmission networks, including multiple grid-forming BESS units, renewable-rich zones, weak-grid areas, regional frequency dynamics and HVDC interfaces."
+                            },
+                            {
+                                  "label": "Include uncertainty quantification",
+                                  "text": "Surrogate-model prediction errors should be quantified through confidence intervals, prediction error bounds or robust optimisation constraints. Inaccurate prediction of RoCoF, frequency nadir or BESS reserve requirements could otherwise create an apparently feasible but operationally insecure schedule."
+                            },
+                            {
+                                  "label": "Consider BESS degradation and lifecycle cost",
+                                  "text": "Fast frequency response, frequent SOC movement and high-power transient support may accelerate battery ageing. Degradation cost should be included so that the economic assessment does not overuse BESS stability services without accounting for long-term asset impact."
+                            },
+                            {
+                                  "label": "Benchmark against field data",
+                                  "text": "The EMT-based approach should be benchmarked against real grid-forming BESS projects, including frequency events, fault ride-through records, active-power response, SOC movement and converter limits."
+                            },
+                            {
+                                  "label": "Develop an implementation roadmap",
+                                  "text": "System operators need a practical roadmap covering EMT model governance, data requirements, surrogate model retraining, cybersecurity, fallback procedures, validation criteria and integration with existing scheduling tools."
+                            }
+                      ]
+                },
+                {
+                      "heading": "Economics and Plans",
+                      "points": [
+                            {
+                                  "label": "Economic value",
+                                  "text": "Grid-forming BESS should not be valued only as an energy-arbitrage asset. Its value also comes from fast stability services, including RoCoF reduction, frequency nadir improvement, synthetic inertia, transient active-power support and frequency-security provision after credible contingencies."
+                            },
+                            {
+                                  "label": "Cost trade-off",
+                                  "text": "Frequency security has an opportunity cost. If a BESS must preserve SOC and power headroom for frequency support, it may have less capacity available for energy arbitrage. System operators therefore need to co-optimise energy dispatch, operating cost, SOC management and transient frequency-security requirements."
+                            },
+                            {
+                                  "label": "Market design",
+                                  "text": "Future electricity markets may need dedicated revenue streams for grid-forming services, including fast frequency response, synthetic inertia, transient reserve, grid-forming availability and voltage-support capability."
+                            },
+                            {
+                                  "label": "Planning implications",
+                                  "text": "Power system planning should assess the dynamic frequency value of GFM BESS, not only its MWh energy capacity. BESS siting and sizing should consider low-inertia regions, renewable-rich areas, weak-grid locations and zones where rapid frequency support provides the highest system value."
+                            },
+                            {
+                                  "label": "Deployment plan",
+                                  "text": "A practical deployment plan could include four stages: build an offline EMT simulation database for credible operating points and contingencies; train and validate the surrogate model; embed the trained surrogate into day-ahead scheduling; then use real operational data to monitor performance and periodically retrain the model."
+                            }
+                      ]
+                },
+                {
+                      "heading": "Conclusion",
+                      "paragraphs": [
+                            "LA-DAES offers a pathway to convert second-scale EMT dynamic knowledge into hour-scale operational scheduling decisions. This allows grid-forming BESS to be scheduled not only for cost efficiency, but also for secure operation in low-inertia, inverter-dominated power systems."
+                      ]
+                }
+          ]
+    },
     {
       articleNo: 5,
       title: "Passivity-Based Control for DC Data Centres: Enhancing Converter Stability under Grid and Load Disturbances",
