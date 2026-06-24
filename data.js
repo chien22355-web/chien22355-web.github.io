@@ -1,6 +1,24 @@
 window.SITE_DATA = {
   news: [
     {
+          "title": "Topology Optimization for DC Circuit Breaker Placement in HVDC Switching Stations",
+          "date": "2026-06-12",
+          "region": "Europe",
+          "sector": "HVDC Protection & Grid Resilience",
+          "source": "arXiv",
+          "sourceUrl": "https://arxiv.org/pdf/2606.14286",
+          "priority": false,
+          "tags": [
+                "HVDC",
+                "DC circuit breaker",
+                "DCCB",
+                "protection design",
+                "MILP",
+                "offshore grid"
+          ],
+          "summary": "Van Deyck, Van Acker, Chaffey and Van Hertem propose a mixed-integer linear optimisation method for placing DC circuit breakers in HVDC switching stations, balancing fault-impact risk reduction against breaker investment cost."
+    },
+    {
           "title": "Learning-Assisted Day-Ahead Energy Scheduling for Frequency-Secure Inverter-Dominated Grids with Grid-Forming Battery Energy Storage Systems",
           "date": "2026-06-04",
           "region": "Global Research",
@@ -74,6 +92,102 @@ window.SITE_DATA = {
     }
   ],
   articles: [
+    {
+          "articleNo": 7,
+          "title": "Topology Optimization for DC Circuit Breaker Placement in HVDC Switching Stations",
+          "date": "2026-06-24",
+          "topic": "HVDC Protection & Grid Resilience",
+          "readTime": "8 min",
+          "imageTone": "control",
+          "sourceTitle": "Merijn Van Deyck, Tom Van Acker, Geraint Chaffey and Dirk Van Hertem, arXiv:2606.14286",
+          "sourceUrl": "https://arxiv.org/pdf/2606.14286",
+          "tags": [
+                "HVDC protection",
+                "DC circuit breaker",
+                "MILP",
+                "topology optimisation",
+                "fault-impact risk",
+                "offshore energy hub"
+          ],
+          "slug": "topology-optimization-dc-circuit-breaker-placement-hvdc-switching-stations",
+          "excerpt": "A review of how MILP-based topology optimisation can guide DC circuit breaker placement in HVDC switching stations by balancing protection cost against high-impact DC fault risk.",
+          "sections": [
+                {
+                      "heading": "Executive Summary",
+                      "paragraphs": [
+                            "This paper addresses the protection design problem in future multiterminal HVDC grids. When a DC fault occurs, the fault current can rise very rapidly. Unlike AC systems, DC systems do not have a natural current zero-crossing, which makes fault interruption technically challenging. Without an effective HVDC protection scheme, a single DC fault may lead to the disconnection of a large part of the HVDC network and result in a high-impact outage.",
+                            "DC circuit breakers, DCCBs, are critical for isolating DC faults, but they are expensive assets. At the same time, DC faults can have severe operational consequences. Conventional protection strategies and standard configurations become increasingly restrictive when HVDC switching stations grow in size and connect multiple converter stations, DC lines and energy hubs.",
+                            "To address this challenge, the paper proposes a mixed-integer linear optimisation, MILP, method for DC circuit breaker placement. The method treats DCCB placement as a topology optimisation problem. It considers the failure rates of DC grid components, the impact of DC faults and the relative cost of DCCBs. The objective is to minimise the risk of high-impact DC faults while accounting for the cost of protection investment.",
+                            "In simple terms, the paper asks the following engineering question: how can engineers allocate DCCB investment wisely so that, when a DC fault occurs, as much of the HVDC network as possible remains in operation?"
+                      ]
+                },
+                {
+                      "heading": "Technical Framing",
+                      "paragraphs": [
+                            "If there are 20 possible DCCB locations and each location can either have a breaker or not, there are 2^20, or 1,048,576, possible configurations. It is not practical for engineers to evaluate all these configurations manually, which is why an optimisation-based approach is needed.",
+                            "MILP, mixed-integer linear programming, is suitable for engineering decisions that include discrete choices. For each candidate DCCB location, the model defines a binary decision variable indicating whether a DCCB is installed. The optimisation model then decides which locations should receive a DCCB and which should not.",
+                            "The paper adopts a risk-based protection design philosophy. In simplified form, risk can be expressed as failure rate multiplied by fault impact. This means the model considers not only how likely a component is to fail, but also how severe the consequence would be if it failed."
+                      ],
+                      "points": [
+                            {
+                                  "label": "Fault impact",
+                                  "text": "The impact of a DC fault can be evaluated using indicators such as disconnected DC lines, disconnected converters, interrupted MW transfer, loss of offshore wind export capacity, disconnected HVDC grid area, and impact on energy hub or interconnector availability."
+                            },
+                            {
+                                  "label": "Objective function",
+                                  "text": "The optimisation balances reduced fault impact against additional breaker cost. It determines not only how many DCCBs are needed, but also where they should be placed."
+                            },
+                            {
+                                  "label": "Marginal value",
+                                  "text": "An important feature of the method is that it can calculate the marginal risk-reduction benefit of each additional DCCB, helping engineers assess whether an extra breaker is economically justified."
+                            },
+                            {
+                                  "label": "Overall methodology",
+                                  "text": "The workflow builds candidate HVDC switching-station topologies, lists candidate DCCB locations and DC fault scenarios, assigns failure rates, calculates fault impact under each DCCB configuration, formulates the MILP problem, solves for the optimal configuration, and uses the result as a design input."
+                            }
+                      ]
+                },
+                {
+                      "heading": "Technical Results",
+                      "paragraphs": [
+                            "The case study contains six external AC connections, representing offshore wind farms and external AC systems such as Belgium, Great Britain and Denmark. The paper uses pre-fault power-flow scenarios representing one year of operation, calculated through economic dispatch optimisation.",
+                            "In the base case, the optimal solution installs one DCCB. This breaker divides the DC switching station into two protection zones, reducing the impact of DC faults without requiring full selective protection. Of the total objective value, 36.08% comes from DCCB investment cost, while 63.92% comes from the remaining fault-impact risk.",
+                            "The paper also notes that the AC node with the highest imbalance cost is connected to the DC node with the lowest total fault probability. This shows that the optimal design is not determined only by failure probability, but also by the operational consequence of each fault.",
+                            "Sensitivity analysis shows that if breakers are expensive, the model accepts more fault-impact risk and may choose zero DCCBs. If breakers are cheap, the model installs more of them, typically two or three DCCBs. In the intermediate cost range, one DCCB becomes the economic sweet spot.",
+                            "The first DCCB significantly reduces fault-impact risk, while the second, third and fourth DCCBs provide progressively smaller additional benefits. This demonstrates a clear diminishing-return effect. As DC cable reliability increases, the economic value of DCCBs decreases, meaning DCCBs become more attractive when cable faults are more likely or more severe."
+                      ]
+                },
+                {
+                      "heading": "Recommendations",
+                      "points": [
+                            {
+                                  "label": "Validate on larger HVDC networks",
+                                  "text": "The method should be tested on larger and more realistic HVDC networks, including multiple offshore energy hubs, converter stations, DC cable routes and interconnectors."
+                            },
+                            {
+                                  "label": "Add dynamic fault behaviour",
+                                  "text": "Future work should include dynamic DC fault behaviour and protection coordination, including fault-current rise rate, converter blocking, DCCB opening time and coordination between multiple DCCBs."
+                            },
+                            {
+                                  "label": "Combine EMT and MILP",
+                                  "text": "Combining EMT simulation with MILP-based topology optimisation would make the method more suitable for practical engineering design by linking fast fault dynamics with investment and topology decisions."
+                            },
+                            {
+                                  "label": "Expand reliability metrics",
+                                  "text": "The model should include reliability and availability metrics beyond fault-impact cost, such as expected energy not served, offshore wind curtailment, interconnector unavailability and restoration time."
+                            }
+                      ]
+                },
+                {
+                      "heading": "Economics and Plans",
+                      "paragraphs": [
+                            "The economic value of DCCB placement should be evaluated not only by equipment cost, but also by avoided outage cost, reduced curtailment, improved availability and enhanced system resilience. DCCBs should be treated as strategic resilience assets for future multiterminal HVDC grids.",
+                            "Investment decisions should focus on the marginal benefit of each additional breaker, rather than assuming that more protection is always economically justified. The first DCCB may provide a large reduction in fault-impact risk, while additional breakers may deliver progressively smaller benefits.",
+                            "Current market arrangements may not fully reward investments that reduce rare but high-impact HVDC faults. Regulators and system operators may need to define reliability incentives, availability payments or resilience-based investment allowances for HVDC protection systems. This would help ensure that DCCB investment is economically justified and aligned with long-term system security."
+                      ]
+                }
+          ]
+    },
     {
           "articleNo": 6,
           "title": "Learning-Assisted Scheduling of Grid-Forming BESS for Frequency-Secure Inverter-Dominated Grids",
