@@ -1,12 +1,29 @@
 window.SITE_DATA = {
   news: [
     {
+          "title": "Pre-Fault Voltage Discrimination and Time-Domain Protection for Distribution Networks with Inverter-Based Resources",
+          "date": "2026-06-09",
+          "region": "Global Research",
+          "sector": "Distribution Protection & Inverter-Based Resources",
+          "source": "arXiv",
+          "sourceUrl": "https://arxiv.org/abs/2606.11135",
+          "priority": false,
+          "tags": [
+                "inverter-based resources",
+                "distribution protection",
+                "pre-fault voltage discrimination",
+                "time-domain protection",
+                "C-HIL"
+          ],
+          "summary": "Zhao, Bouffard and Joós propose a pre-fault voltage discrimination strategy and time-domain protection algorithm to improve fast, secure and dependable fault detection in distribution networks with high IBR penetration."
+    },
+    {
           "title": "Topology Optimization for DC Circuit Breaker Placement in HVDC Switching Stations",
           "date": "2026-06-12",
           "region": "Europe",
           "sector": "HVDC Protection & Grid Resilience",
           "source": "arXiv",
-          "sourceUrl": "https://arxiv.org/pdf/2606.14286",
+          "sourceUrl": "https://arxiv.org/abs/2606.14286",
           "priority": false,
           "tags": [
                 "HVDC",
@@ -93,6 +110,100 @@ window.SITE_DATA = {
   ],
   articles: [
     {
+          "articleNo": 8,
+          "title": "Pre-Fault Voltage Discrimination and Time-Domain Protection for Distribution Networks with Inverter-Based Resources",
+          "date": "2026-06-25",
+          "topic": "Distribution Protection & Inverter-Based Resources",
+          "readTime": "8 min",
+          "imageTone": "control",
+          "sourceTitle": "Junyuan Zhao, François Bouffard and Géza Joós, arXiv:2606.11135",
+          "sourceUrl": "https://arxiv.org/abs/2606.11135",
+          "tags": [
+                "IBR protection",
+                "PVD",
+                "time-domain protection",
+                "ANSI 51",
+                "C-HIL",
+                "distribution networks"
+          ],
+          "slug": "pre-fault-voltage-discrimination-time-domain-protection-ibr-distribution-networks",
+          "excerpt": "A review of how pre-fault voltage discrimination can improve fast and secure fault detection when conventional overcurrent protection becomes unreliable in inverter-dominated distribution networks.",
+          "sections": [
+                {
+                      "heading": "Executive Summary",
+                      "paragraphs": [
+                            "This paper addresses the protection challenge in distribution networks with a high penetration of inverter-based resources, IBRs. As solar PV, battery energy storage systems, EV chargers and microgrids are increasingly connected through power electronic inverters, conventional phasor-based overcurrent protection becomes less reliable. This is mainly because IBRs have limited short-circuit current sourcing capability. As a result, traditional protection functions, such as ANSI 51 overcurrent protection, may fail to detect faults dependably in inverter-dominated distribution networks.",
+                            "To address this problem, the paper proposes a Pre-Fault Voltage Discrimination, PVD, strategy. Instead of relying only on large fault-current magnitudes, the method uses pre-fault voltage information and time-domain waveform characteristics to distinguish actual faults from normal transient events, such as switching operations and transformer inrush. The PVD strategy is then used to design a simple but effective time-domain fault detection algorithm for distribution networks containing IBRs.",
+                            "The key technical contribution is that the proposed method improves fault detection speed without compromising protection security and dependability. In other words, the relay should trip quickly for real faults, but should not trip incorrectly for normal switching events. The effectiveness of the algorithm is validated using both offline simulations and controller hardware-in-the-loop, C-HIL, real-time simulation, which makes the validation more relevant to practical protection implementation.",
+                            "Security means that the relay should not trip for non-fault events. Dependability means that the relay should trip when a real fault occurs."
+                      ]
+                },
+                {
+                      "heading": "Technical Framing",
+                      "paragraphs": [
+                            "Traditional overcurrent protection can be simplified as a measured-current threshold check. In conventional power systems, synchronous machines can produce large fault currents. However, IBRs are current-limited by their power electronic converters, and their fault current may remain close to the converter current limit. It is therefore possible that real fault current stays below the pickup threshold of a conventional overcurrent relay.",
+                            "The PVD concept uses pre-fault voltage information as a reference. A voltage deviation signal can be defined as the difference between the measured voltage and the pre-fault voltage reference. A time-domain discrimination index may then be constructed using the absolute voltage deviation or voltage-deviation energy over a short time window.",
+                            "The protection principle is not simply to trip whenever voltage changes. Instead, it uses pre-fault voltage discrimination to distinguish actual faults from normal transient events."
+                      ],
+                      "points": [
+                            {
+                                  "label": "Why overcurrent protection becomes unreliable",
+                                  "text": "IBRs have limited short-circuit current sourcing capability because their converters are current-limited. A real fault may therefore not produce enough current to trigger conventional ANSI 51 overcurrent protection."
+                            },
+                            {
+                                  "label": "How PVD uses pre-fault voltage",
+                                  "text": "PVD compares post-event voltage behaviour against a pre-fault voltage reference. If the voltage-deviation energy exceeds a threshold, the post-event waveform has deviated significantly from the pre-fault reference."
+                            },
+                            {
+                                  "label": "Time-domain protection",
+                                  "text": "Conventional phasor-based protection estimates phasors or RMS quantities and requires a data window. Time-domain protection uses instantaneous waveform samples, allowing the relay to react directly to waveform-level evidence without waiting for a stable phasor estimate."
+                            },
+                            {
+                                  "label": "Research methodology",
+                                  "text": "The method builds a distribution network model with IBRs, generates fault and non-fault event scenarios, captures pre-fault voltage waveforms, calculates time-domain voltage deviation after events, applies PVD for discrimination, and validates the algorithm using offline simulation and C-HIL real-time simulation."
+                            }
+                      ]
+                },
+                {
+                      "heading": "Technical Results",
+                      "paragraphs": [
+                            "The offline simulations show that the algorithm correctly detects fault cases while remaining secure for normal switching events.",
+                            "The C-HIL real-time simulation system, which includes a grid equivalent, transformers, loads, a BESS, breakers, measurements and fault points, shows that the proposed method detects most faults within sub-millisecond time. By contrast, ANSI 51 overcurrent protection requires tens to more than one hundred milliseconds in the same test cases.",
+                            "Instead of using absolute travelling wave amplitude alone, the algorithm compares the travelling wave, TW, against the pre-fault voltage, PV. A high TWPV value supports fast fault detection, while a low TWPV value requires further verification.",
+                            "Even if switching events produce travelling waves, they are filtered out by the additional discrimination logic. This improves protection security and reduces the risk of false tripping.",
+                            "For a real fault, even when the fault-current magnitude is low, a travelling wave can still be detected, causing the protection algorithm to issue a trip command. For a normal switching event, a travelling wave may also be detected, but the pre-fault voltage discrimination criterion is not exceeded. Therefore, the event is not classified as a fault. This confirms both dependability and security."
+                      ]
+                },
+                {
+                      "heading": "Engineering Recommendations",
+                      "points": [
+                            {
+                                  "label": "Test different inverter controls",
+                                  "text": "Future work should test the algorithm under grid-following, grid-forming, droop-controlled, virtual synchronous machine and fault-ride-through strategies, because different inverter controls may produce different voltage and current transient signatures."
+                            },
+                            {
+                                  "label": "Include measurement imperfections",
+                                  "text": "The algorithm should be tested with CT/VT bandwidth limits, sensor noise, ADC quantisation, communication latency, relay processing delay, breaker operating time and time-synchronisation errors."
+                            },
+                            {
+                                  "label": "Develop adaptive thresholds",
+                                  "text": "Fixed thresholds may not be sufficiently robust in real distribution networks with changing load, PV output, BESS operation, feeder reconfiguration and seasonal demand. Thresholds should adapt to pre-fault voltage, pre-fault current, DER penetration, network topology and measurement noise."
+                            }
+                      ]
+                },
+                {
+                      "heading": "Economics and Marketing Plans",
+                      "paragraphs": [
+                            "The research could be commercialised through three main routes. First, the PVD algorithm could be implemented as a relay firmware function for relay manufacturers developing next-generation protection devices for high-IBR distribution networks.",
+                            "Second, the method could be developed into a protection assessment software tool for utility planning teams and protection engineers who need to identify feeders where conventional overcurrent protection is no longer sufficient.",
+                            "Third, the method could be offered as a HIL-based validation service for project developers, utilities, BESS integrators and microgrid owners that require compliance evidence or protection performance validation.",
+                            "A practical business model would start with engineering studies and HIL validation services before moving toward software licensing or relay firmware integration. Utilities are usually cautious when adopting new protection functions, so a validation-first commercial strategy would reduce adoption risk.",
+                            "The main value proposition is not only faster fault detection, but also improved protection dependability, reduced false trips, better DER integration and stronger resilience for future inverter-dominated distribution networks."
+                      ]
+                }
+          ]
+    },
+    {
           "articleNo": 7,
           "title": "Topology Optimization for DC Circuit Breaker Placement in HVDC Switching Stations",
           "date": "2026-06-24",
@@ -100,7 +211,7 @@ window.SITE_DATA = {
           "readTime": "8 min",
           "imageTone": "control",
           "sourceTitle": "Merijn Van Deyck, Tom Van Acker, Geraint Chaffey and Dirk Van Hertem, arXiv:2606.14286",
-          "sourceUrl": "https://arxiv.org/pdf/2606.14286",
+          "sourceUrl": "https://arxiv.org/abs/2606.14286",
           "tags": [
                 "HVDC protection",
                 "DC circuit breaker",
