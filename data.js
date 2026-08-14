@@ -1,6 +1,24 @@
 window.SITE_DATA = {
   "news": [
     {
+      "title": "A Copula-Based Scenario Generation Method for Renewable Wind Power Outputs of Two Wind Farms",
+      "date": "2026-07-23",
+      "region": "Global Research",
+      "sector": "Wind Power Scenario Generation & Stochastic Dispatch",
+      "source": "Energies / MDPI",
+      "sourceUrl": "https://www.mdpi.com/1996-1073/19/15/3476",
+      "priority": false,
+      "tags": [
+        "wind power",
+        "Copula",
+        "scenario generation",
+        "tail dependence",
+        "K-means clustering",
+        "optimal power flow"
+      ],
+      "summary": "Hu, Yin, Dong, Xu, Yuan and Zhang propose a Copula-based method for generating correlated wind-power scenarios from two wind farms, using non-parametric marginals, bivariate Copula comparison, t-Copula sampling, K-means reduction and IEEE 30-bus OPF testing."
+    },
+    {
       "title": "A Soft-Switching Hybrid Boost-Buck PFC Converter for High Power Quality EV Battery Charging Applications",
       "date": "2026-06-30",
       "region": "Global Research",
@@ -247,6 +265,247 @@ window.SITE_DATA = {
     }
   ],
   "articles": [
+    {
+      "articleNo": 15,
+      "title": "Copula-Based Scenario Generation for Wind Power",
+      "date": "2026-08-15",
+      "topic": "Wind Power Scenario Generation & Stochastic Dispatch",
+      "readTime": "16 min",
+      "imageTone": "control",
+      "sourceTitle": "Rong Hu, Xueli Yin, Yingrui Dong, Cheng Xu, Weican Yuan and Weiqi Zhang, Energies, 2026",
+      "sourceUrl": "https://www.mdpi.com/1996-1073/19/15/3476",
+      "tags": [
+        "wind power",
+        "Copula modelling",
+        "scenario generation",
+        "tail dependence",
+        "OPF",
+        "reserve planning",
+        "grid-code context"
+      ],
+      "slug": "copula-based-scenario-generation-wind-power",
+      "excerpt": "An engineering review of Copula-based wind power scenario generation, focusing on correlated wind farms, tail dependence, K-means scenario reduction, OPF embedding and the path from statistical modelling to operational decision support.",
+      "sections": [
+        {
+          "heading": "Executive Summary",
+          "paragraphs": [
+            "This paper addresses a practical challenge in renewable power system operation: wind generation is not a deterministic curve, and the outputs of two nearby wind farms are often strongly correlated. When weather conditions change, their outputs may rise, fall, or behave extremely at the same time.",
+            "To model this joint uncertainty without constructing a complicated joint probability distribution directly, the paper proposes a Copula-based scenario generation method for two correlated wind farms. The workflow first estimates non-parametric marginal distributions from historical wind power data and transforms the observations into pseudo-observations.",
+            "It then compares six bivariate Copula models, including Gaussian, t, Empirical, Frank, Clayton and Gumbel Copulas, using correlation measures and fitting distance from the Empirical Copula. The results show that the bivariate t-Copula provides the best parametric fit and can represent both strong correlation and tail dependence between the two wind farms.",
+            "Based on the fitted t-Copula, random samples are generated in Copula space, transformed back into wind power outputs through inverse marginal functions, and reduced into six representative scenarios using K-means clustering. These scenarios are embedded into an IEEE 30-bus optimal power flow model to assess their impact on conventional unit dispatch.",
+            "In essence, the paper turns uncertain wind behaviour into practical operating scenarios for stochastic power system analysis."
+          ]
+        },
+        {
+          "heading": "Research Novelty and Methodology",
+          "paragraphs": [
+            "Traditional wind power scenario generation often models each wind farm separately, assumes simple probabilistic distributions, or applies Monte Carlo sampling, Latin Hypercube sampling and clustering methods to produce representative scenarios. These methods can describe the uncertainty of a single wind farm, but they may fail to capture joint uncertainty between neighbouring wind farms, especially when both farms rise, fall or experience extreme output conditions together.",
+            "In simple terms, this paper first describes the output distribution of each wind farm individually, and then uses a Copula to connect them statistically. This avoids directly constructing a complicated joint probability distribution.",
+            "From a power engineering perspective, this is significant because system operation is not based on one deterministic forecast. Operators need multiple possible futures. If two wind farms are actually correlated but the model treats them as independent, the system may underestimate simultaneous low-wind events, leading to insufficient reserves, poor conventional generation dispatch or network constraint violations.",
+            "By embedding the generated scenarios into an IEEE 30-bus OPF model, the paper connects probability modelling directly to stochastic power system operation."
+          ],
+          "formulae": [
+            "Workflow: Historical wind farm outputs -> marginal distributions -> Copula dependence model -> wind power samples -> K-means representative scenarios -> IEEE 30-bus OPF"
+          ]
+        },
+        {
+          "heading": "Random Variables and Marginal Distributions",
+          "paragraphs": [
+            "The outputs of the two wind farms are treated as two random variables: X for wind farm 1 output and Y for wind farm 2 output. Each wind farm has its own probability distribution, called a marginal distribution.",
+            "Traditional methods often stop by modelling X and Y separately. However, power system operation needs to know the probability that X is low while Y is also low, or that X is high while Y is also high. This requires a joint distribution."
+          ],
+          "formulae": [
+            "F_X(x) = P(X <= x)",
+            "F_Y(y) = P(Y <= y)"
+          ]
+        },
+        {
+          "heading": "Joint Distribution Difficulty",
+          "paragraphs": [
+            "The joint distribution describes the probability that both wind farms fall into certain output states together. Directly constructing this distribution is difficult because wind power output is not perfectly Gaussian, may be non-linear, is bounded by physical limits, is affected by extreme events and is spatially correlated.",
+            "A simple Gaussian joint distribution may therefore underestimate the probability of simultaneous extreme low-wind or high-wind events."
+          ],
+          "formulae": [
+            "F_XY(x,y) = P(X <= x, Y <= y)"
+          ]
+        },
+        {
+          "heading": "Core Copula Formulation",
+          "paragraphs": [
+            "The core idea of a Copula is that a joint distribution can be decomposed into marginal distributions and a dependence structure. In simple terms, a Copula separates the modelling of individual distributions from the modelling of dependence between variables.",
+            "Wind power is variable and weather-driven. Two neighbouring wind farms are often not independent. The value of a Copula is that it generates wind scenarios that preserve realistic dependence between wind farms.",
+            "The data are usually transformed into the [0,1] interval. The Copula then describes how the transformed variables move together."
+          ],
+          "formulae": [
+            "F_XY(x,y) = C(F_X(x), F_Y(y))",
+            "u = F_X(x)",
+            "v = F_Y(y)",
+            "u, v in [0,1]",
+            "C(u, v) = P(U <= u, V <= v)"
+          ]
+        },
+        {
+          "heading": "Pseudo-Observations",
+          "paragraphs": [
+            "In practice, the paper first estimates the non-parametric marginal distribution of each wind farm using historical output data. The original wind power outputs are then transformed into pseudo-observations. Intuitively, this converts MW values into probability ranks.",
+            "For example, if wind farm 1 output is 80 MW and the transformed value is u = 0.72, this means 80 MW is approximately at the 72nd percentile of the historical distribution. After this transformation, the data from both wind farms are mapped into the [0,1] Copula space, making it easier to compare different Copula models."
+          ],
+          "formulae": [
+            "Original output: Wind farm 1 = 80 MW",
+            "Pseudo-observation: u = 0.72"
+          ]
+        },
+        {
+          "heading": "Comparing Different Copulas",
+          "paragraphs": [
+            "The paper compares six bivariate Copula models and asks which model best describes the joint behaviour of the two wind farms and which model best captures extreme events."
+          ],
+          "points": [
+            {
+              "label": "Gaussian Copula",
+              "text": "Suitable for general positive correlation where two wind farms rise or fall together under normal conditions, but weaker for tail dependence and extreme co-movement."
+            },
+            {
+              "label": "t-Copula",
+              "text": "Similar to the Gaussian Copula, but with heavier tails. It can capture normal correlation and simultaneous extreme events. Lower degrees of freedom imply heavier tails and stronger extreme dependence."
+            },
+            {
+              "label": "Empirical Copula",
+              "text": "Built directly from historical data without assuming a fixed mathematical form. It is useful as a benchmark, but is data-dependent and weaker for unseen extreme events."
+            },
+            {
+              "label": "Frank Copula",
+              "text": "Useful for dependence in the middle range of the distribution, with no strong lower-tail or upper-tail emphasis."
+            },
+            {
+              "label": "Clayton Copula",
+              "text": "Good at modelling simultaneous low-output events, which matter for reserve requirement, balancing cost and frequency-security risk."
+            },
+            {
+              "label": "Gumbel Copula",
+              "text": "Good at modelling simultaneous high-output events, which may drive congestion, voltage rise, curtailment and redispatch cost."
+            }
+          ]
+        },
+        {
+          "heading": "Tail Dependence",
+          "paragraphs": [
+            "Tail dependence is a key concept in this paper. Normal correlation describes whether two variables move together under average conditions, but power systems are often more concerned with extreme cases.",
+            "The relevant operational questions are whether both wind farms produce very low output at the same time, or whether both wind farms produce very high output at the same time. Gaussian Copula is useful for general correlation, but weaker in representing joint extremes. The t-Copula is better at capturing extreme co-movement, making it valuable for dispatch, reserve and congestion management."
+          ]
+        },
+        {
+          "heading": "Back-Transformation to MW",
+          "paragraphs": [
+            "After fitting the t-Copula, random samples are generated in Copula space. However, u and v are probability values between 0 and 1, not MW values. Inverse marginal functions are therefore used to transform the samples back into actual wind power outputs."
+          ],
+          "formulae": [
+            "Copula sample = (u, v)",
+            "x = F_X⁻¹(u)",
+            "y = F_Y⁻¹(v)",
+            "Scenario sample = (Wind farm 1 MW, Wind farm 2 MW)"
+          ]
+        },
+        {
+          "heading": "K-Means Scenario Reduction",
+          "paragraphs": [
+            "The Copula model can generate many wind power samples, but OPF or stochastic dispatch cannot practically evaluate thousands or tens of thousands of scenarios every time because the computational burden would be too high.",
+            "The authors therefore use K-means clustering to reduce many generated samples into a small number of representative scenarios. The paper reduces the samples into six representative scenarios."
+          ],
+          "formulae": [
+            "min Σ_k Σ_i∈C_k ||x_i - μ_k||^2"
+          ],
+          "points": [
+            {
+              "label": "C_k",
+              "text": "The kth scenario cluster."
+            },
+            {
+              "label": "mu_k",
+              "text": "The centre of the kth cluster."
+            },
+            {
+              "label": "x_i",
+              "text": "The ith scenario sample."
+            }
+          ]
+        },
+        {
+          "heading": "Embedding Scenarios into OPF",
+          "paragraphs": [
+            "The final step is to introduce the generated wind scenarios into the IEEE 30-bus OPF model. This moves the paper from statistical modelling to power system operation.",
+            "The paper is not simply predicting one wind power value. Instead, it generates multiple possible future wind power outputs so operators can assess how conventional generation should respond when wind output is high, low or jointly extreme across both farms."
+          ],
+          "formulae": [
+            "Objective: minimise generation cost while satisfying network constraints",
+            "min Σ_i C_i(P_i)",
+            "Power balance: Σ generation = Σ load",
+            "Generator limits: P_i,min <= P_i <= P_i,max",
+            "Line flow limits: |F_l| <= F_l,max",
+            "Voltage limits: V_min <= V <= V_max"
+          ]
+        },
+        {
+          "heading": "Experimental Results and Discussion",
+          "paragraphs": [
+            "The paper uses measured output data from two wind farms, estimates the marginal distribution of each wind farm, and transforms the MW outputs into pseudo-observations in the [0,1] probability space. The results show that the two wind farms do not behave independently. Instead, their outputs show clear joint behaviour: when one farm is high or low, the other tends to move in a related way.",
+            "The comparison across Gaussian, t, Empirical, Frank, Clayton and Gumbel Copulas shows that the bivariate t-Copula achieves the smallest fitting distance among all parametric Copula models. This means that it best matches the dependence pattern observed in the historical data. More importantly, it suggests that the two wind farms may exhibit tail dependence, meaning simultaneous low-wind or high-wind events are operationally relevant.",
+            "Based on the fitted t-Copula, the authors generate random samples in Copula space, transform them back into wind power outputs using inverse marginal functions, reduce them into six representative scenarios using K-means clustering, and introduce these scenarios into the IEEE 30-bus OPF model. The engineering meaning is straightforward: many possible wind futures are compressed into a small number of representative operating cases, which are then used to study how conventional generation dispatch changes under wind uncertainty.",
+            "The importance of the results is that the paper moves Copula-based scenario generation beyond pure statistical fitting and into OPF application. Many probabilistic models stop at whether the distribution fits well, but this paper goes one step further by embedding the generated wind scenarios into a power-system dispatch study."
+          ]
+        },
+        {
+          "heading": "Limitations and Practice-Ready Additions",
+          "paragraphs": [
+            "The experimental design has clear blind spots. It only considers two wind farms, which is low-dimensional compared with real power systems. In the UK or European context, system operators must deal with multiple onshore and offshore wind zones, solar output, demand, interconnectors, storage and high-dimensional time-varying dependence.",
+            "The study is mainly steady-state OPF. It does not address frequency response, ramping, unit commitment, reserve procurement, N-1 contingency, dynamic security or forecast lead time. Reducing many samples to six representative scenarios using K-means is computationally convenient, but it may smooth out rare high-impact cases. If the historical data do not include rare weather events, both the Empirical Copula and the fitted Copula may underestimate future climate-driven extremes.",
+            "From a practical engineering viewpoint, this method is suitable as a probabilistic screening tool before dispatch, but it is not yet a complete grid-code compliance or wind farm connection study."
+          ],
+          "points": [
+            {
+              "label": "Additional tests",
+              "text": "Multi-wind-farm, multi-region and multi-year testing should be added, including seasonal and weather-regime clustering and forecast-error-based scenario generation."
+            },
+            {
+              "label": "Security studies",
+              "text": "N-1 security-constrained OPF, unit commitment, reserve co-optimisation, wind curtailment and redispatch cost analysis, transmission congestion and voltage-security study should be evaluated."
+            },
+            {
+              "label": "Dynamic validation",
+              "text": "Dynamic frequency simulation, extreme-weather stress testing, out-of-sample validation and comparison with GAN, VAE, Vine Copula and Gaussian Copula baselines would make the approach more practice-ready."
+            }
+          ]
+        },
+        {
+          "heading": "Grid-Code and Compliance Context",
+          "paragraphs": [
+            "For this Copula-based wind scenario study, the relevant rules are not about Copula itself, but about whether wind farms remain compliant under different operating and fault scenarios.",
+            "IEC 61400-21-1 concerns electrical characteristics, measurement procedures and compliance assessment for grid-connected wind turbines. Relevant tests include power quality, voltage fluctuation, flicker, harmonics, power control and turbine electrical behaviour. Passing generally means measured quantities stay within the limits defined at the connection point or by the network operator.",
+            "EU 2016/631 Requirements for Generators is more focused on system-security capability for power park modules, including fault ride-through, reactive power capability, voltage control, frequency response and active-power control. It requires the TSO to define a voltage-against-time profile, and the generator must stay connected and operate stably during secured faults.",
+            "In the GB context, the NESO Grid Code and GC0062 are especially relevant to fault ride-through. Wind plant must ride through voltage dips and recover active power according to the voltage-duration curve and recovery requirements."
+          ]
+        },
+        {
+          "heading": "Commercialization",
+          "paragraphs": [
+            "From a product-management perspective, the commercial value of this Copula-based wind scenario method is not simply selling a statistical model. The real product is a decision-support layer that helps wind developers, network operators, aggregators and energy traders price uncertainty more accurately.",
+            "Three revenue models are realistic: SaaS or API licensing, where customers upload historical wind farm data and receive joint wind scenarios; engineering consulting, supporting grid-connection studies, OPF, congestion analysis and reserve assessment; and module licensing, where the model is embedded into PSS/E, PowerFactory, PLEXOS, EMS/DMS or trading platforms.",
+            "ROI comes from lower balancing cost, better reserve sizing, improved congestion forecasting and reduced curtailment risk. CAPEX would mainly cover data infrastructure, model development, OPF solvers, cloud computing, cybersecurity and compliance documentation.",
+            "The certification barrier is not the Copula algorithm itself. The barrier appears when the generated scenarios support real wind-farm connection or operation studies. Then the workflow must align with IEC 61400-21-1 for electrical characteristic measurement and compliance assessment, EU RfG requirements for power park modules and GB Grid Code fault-ride-through evidence."
+          ]
+        },
+        {
+          "heading": "Product Roadmap and Moat",
+          "paragraphs": [
+            "The best first commercial use case is risk analysis for neighbouring wind farms located on the same export corridor. Copula is valuable because it describes whether assets move high, low or extreme together. The first customer group could include offshore wind developers, DNO or TSO planning teams, renewable aggregators, energy traders and storage investors.",
+            "A specialised product should begin with two wind farms, OPF and a congestion or reserve report. This is narrow enough to deliver quickly, but valuable enough to solve a real pain point. Customers care because a single deterministic forecast cannot tell them how much reserve is needed when both wind farms drop together, or whether transmission congestion appears when both farms produce high output.",
+            "Over time, the product should generalise into a multi-asset platform covering multiple wind farms, solar plants, demand, BESS, interconnectors and prices. At that point, bivariate Copula will not be enough. The roadmap should move toward Vine Copula, high-dimensional scenario generation, probabilistic forecasting and stochastic optimisation.",
+            "The technical moat has three layers: data, engineering validation and workflow integration. The data moat depends on high-quality, multi-year, time-synchronised wind output, weather, forecast-error, SCADA, historian, curtailment, outage and network-topology data. The engineering validation moat depends on out-of-sample validation, extreme-weather stress testing, security-constrained OPF, unit commitment, reserve co-optimisation, dynamic frequency studies and compliance-linked evidence. The workflow moat comes from integration with PLEXOS, PowerFactory, EMS/DMS, trading platforms and planning-report workflows."
+          ]
+        }
+      ],
+      "cengAngle": "Use this case to discuss uncertainty modelling, stochastic dispatch, reserve sizing, correlation risk, tail-dependence judgement, OPF constraints, validation evidence and the difference between a statistical fit and an engineering decision-support workflow."
+    },
     {
       "articleNo": 14,
       "title": "A Soft-Switching Hybrid Boost-Buck PFC Converter for High Power Quality EV Battery Charging Applications",
